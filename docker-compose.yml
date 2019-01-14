@@ -1,0 +1,14 @@
+version: "3"
+services:
+    php:
+        build:
+            context: .
+            dockerfile: docker-files/php/Dockerfile
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - 80:80
+    postgresql:
+        image: isaackuang/postgres
+        ports:
+            - 5432:5432

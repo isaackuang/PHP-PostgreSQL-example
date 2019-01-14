@@ -1,0 +1,21 @@
+server {
+  listen 80 default_server;
+  charset uft8;
+  server_name _;
+
+  root /var/www/html/public;
+  index index.php;
+
+  location / {
+    try_files $uri $uri/ /index.php?$args;
+  }
+
+  location ~ \.php$ {
+    try_files $uri = 404;
+    fastcgi_pass  127.0.0.1:9000;
+    include fastcgi_params;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  }
+
+}
